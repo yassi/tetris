@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>TETRIS!!!</title>
+        <script src="js/build/tetris.js"></script>
+    </head>
+    <body>
+
+        <script>
+document.addEventListener('DOMContentLoaded',function(){
+    window.Tetris = require('Tetris').Tetris;
+    window.game = new window.Tetris(10);
+    game.init();
+    game.startGameLoop();
+
+});
+        </script>
+    </body>
+</html>
