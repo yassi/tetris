@@ -3,7 +3,7 @@
 var util = require('./util.js');
 var board = require('./board.js');
 
-var Tetris = function(fps) {
+var Tetris = function(fps, canvas) {
   this.fps = fps || 60;
   this.running = false;
   this.runId;
@@ -12,8 +12,8 @@ var Tetris = function(fps) {
   this.blockInPlay = false;
   this.actions = [];
 
-  this.canvas = null;
-  this.ctx = null;
+  this.canvas = canvas;
+  this.ctx = this.canvas.getContext('2d');
   this.block_size = 28; // in pixels
   this.block_gutter = 1 // space between blocks
 
@@ -25,11 +25,8 @@ var Tetris = function(fps) {
 
 
   this.init = function() {
-    this.canvas = document.createElement('canvas');
     this.canvas.width = 700;
     this.canvas.height = 800;
-    this.ctx = this.canvas.getContext('2d');
-    document.body.appendChild(this.canvas);
     document.onkeydown = this.controller.bind(this);
   };
 
