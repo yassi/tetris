@@ -50,8 +50,17 @@ util.arraySum = function(arr, start, end) {
     });
 };
 
-util.arrayShuffle = function(arr){ //v1.0
-    for(var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
+util.arrayShuffle = function(arr) {
+    var j;
+    var i;
+    var temp;
+    for( i = arr.length - 1; i > 0; i-- ) {
+        j = Math.floor(Math.random() * i);
+        // Swap
+        temp = arr[j];
+        arr[j] = arr[i]
+        arr[i] = temp;
+    }
     return arr;
 };
 
