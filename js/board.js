@@ -1,8 +1,10 @@
+'use strict';
+
 var util = require('./util.js');
 var queue = require('./blockQueue.js');
 
 
-var BoardController = function(rows, columns) {
+var Board = function(rows, columns) {
   this.board = [[]];
   this.block = null;
   this.rows = rows;
@@ -22,8 +24,6 @@ var BoardController = function(rows, columns) {
     }
     board.push(util.paddedArray(cols, 1));
     this.board = board;
-    console.log('Newly created board');
-    util.printBoard(this.board);
   };
 
   this.getNewBlock = function() {
@@ -68,8 +68,8 @@ var BoardController = function(rows, columns) {
       // should still be able to rotate there. To compensate
       // we will 'wall kick'
 
-      right_collision = this.detectCollision(this.block.pos.col - 1, this.block.pos.row, this.block.peekState());
-      left_collision = this.detectCollision(this.block.pos.col + 1, this.block.pos.row, this.block.peekState());
+      var right_collision = this.detectCollision(this.block.pos.col - 1, this.block.pos.row, this.block.peekState());
+      var left_collision = this.detectCollision(this.block.pos.col + 1, this.block.pos.row, this.block.peekState());
       if (!right_collision) {
         this.block.pos.col--;
         this.block.rotateRight();
@@ -158,7 +158,7 @@ var BoardController = function(rows, columns) {
 
     for (var i = 0; i < lines.length; i++) {
       this.board.splice(lines[i], 1);
-      new_row = util.paddedArray(this.columns + 2, 0);
+      var new_row = util.paddedArray(this.columns + 2, 0);
       new_row[0] = 1;
       new_row[this.columns + 1] = 1;
       this.board.unshift(new_row);
@@ -209,4 +209,4 @@ var BoardController = function(rows, columns) {
   };
 }; // end of board controller
 
-module.exports.BoardController = BoardController;
+module.exports = Board;

@@ -1,13 +1,13 @@
 "use strict";
 
 var util = require('./util.js');
-var GameBoard = require('./gameController.js').BoardController;
+var board = require('./board.js');
 
 var Tetris = function(fps) {
   this.fps = fps || 60;
   this.running = false;
   this.runId;
-  this.gameBoard = new GameBoard(20, 16);
+  this.gameBoard = new board(20, 16);
   this.gameBoard.init();
   this.blockInPlay = false;
   this.actions = [];
