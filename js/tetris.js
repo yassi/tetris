@@ -17,6 +17,13 @@ var Tetris = function(fps) {
     this.block_size = 28; // in pixels
     this.block_gutter = 1 // space between blocks
 
+    // Measured in ms
+    this.startFrameTime;
+    this.lastFrameTime;
+    this.stepAccumulator = 0;
+    this.step = 1000;
+
+
     this.init = function() {
         this.canvas = document.createElement("canvas");
         this.canvas.width = 700;
@@ -43,6 +50,8 @@ var Tetris = function(fps) {
     this.startGameLoop = function() {
         if (typeof this.runId == "undefined") {
             this.running = true;
+            this.startFrameTime = util.timestamp();
+            this.prevFrameTime = this.startFrameTime;
             this.run();
         }
     }
@@ -59,31 +68,23 @@ var Tetris = function(fps) {
         this.startGameLoop();
     };
 
-    this.run = function(frame) {
-        var startFrame = new Date();
-        var delta;
-        var frame = frame || 0;
+    this.run = function() {
+        this.startFrameTime = util.timestamp();
+        var delta = this.startFrameTime - this.prevFrameTime;
 
-        // console.log('Processing Frame');
-        // end = new Date();
-        // if (this.previousFrameEnd) {
-        //     delta = startFrame - this.previousFrameEnd;
-        //     fps = (1/delta) * 1000;
-        //     // console.log('FPS: ' + fps + '/s');
-        // }
-        this.update(frame);
+        this.update(delta);
         this.render(this.ctx);
-        this.previousFrameEnd = startFrame;
-        frame++;
-        if (frame === 61) {
-            frame = 0;
-        }
+        this.prevFrameTime = this.startFrameTime;
+
         if (this.running) {
-            this.runId = util.requestAnimationFrame.call(window, this.run.bind(this, frame));
+            this.runId = util.requestAnimationFrame.call(window, this.run.bind(this));
         }
     };
 
-    this.update = function(frame) {
+    this.update = function(dt) {
+        // time since beginning
+        this.stepAccumulator += dt;
+
         var action;
         if (!this.gameBoard.inPlay) {
             this.gameBoard.getNewBlock()
@@ -109,11 +110,13 @@ var Tetris = function(fps) {
             }
         }
 
-        if (frame == 30 || frame === 15 || frame == 45 || frame === 60){
+        if(this.stepAccumulator >= this.step){
             this.gameBoard.fallBlock();
+            this.stepAccumulator -= this.step;
         }
+
         var loss = this.gameBoard.detectLoss();
-        if(loss) {
+        if (loss) {
             console.log('PLAYER LOST');
             this.stop();
         }
@@ -154,8 +157,6 @@ var Tetris = function(fps) {
                 x_pos += this.block_size + this.block_gutter;
             }
         }
-
-        util.printBoard(this.gameBoard.board);
     };
 
     this.drawFallingBlock = function(ctx) {
@@ -176,4 +177,3 @@ var Tetris = function(fps) {
 };
 
 module.exports.Tetris = Tetris;
-// window.Tetris = Tetris;
