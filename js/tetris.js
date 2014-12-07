@@ -125,7 +125,14 @@ var Tetris = function(fps, canvas) {
   this.render = function(ctx) {
     this.drawLanded(ctx);
     this.drawFallingBlock(ctx);
+    this.drawLinesCleared(ctx);
     // this.drawThreshold(ctx);
+  };
+
+  this.drawLinesCleared = function(ctx) {
+    ctx.fillStyle = 'black';
+    ctx.font="30px Verdana";
+    ctx.fillText('Lines: ' + this.gameBoard.linesCleared, 550, 50);
   };
 
   this.drawThreshold = function(ctx) {

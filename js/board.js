@@ -11,6 +11,7 @@ var Board = function(rows, columns) {
   this.columns = columns;
   this.inPlay = false;
   this.deathRow = 2; // occupation of this row means game over
+  this.linesCleared = 0;
 
   this.init = function() {
     util.printBoard(this.board);
@@ -162,6 +163,7 @@ var Board = function(rows, columns) {
       new_row[0] = 1;
       new_row[this.columns + 1] = 1;
       this.board.unshift(new_row);
+      this.linesCleared++;
     }
   };
 
