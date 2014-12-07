@@ -12,6 +12,7 @@ var Board = function(rows, columns) {
   this.inPlay = false;
   this.deathRow = 2; // occupation of this row means game over
   this.linesCleared = 0;
+  this.level = 1;
 
   this.init = function() {
     util.printBoard(this.board);
@@ -25,6 +26,16 @@ var Board = function(rows, columns) {
     }
     board.push(util.paddedArray(cols, 1));
     this.board = board;
+  };
+
+  this.getLevel = function() {
+    var level = 1;
+    if (this.linesCleared >= 1 && this.linesCleared <= 90) {
+        level = 1 + ((this.linesCleared - 1) / 10);
+    } else if (this.linesCleared >= 91) {
+        level = 10;
+    }
+    return level;
   };
 
   this.getNewBlock = function() {
@@ -165,6 +176,7 @@ var Board = function(rows, columns) {
       this.board.unshift(new_row);
       this.linesCleared++;
     }
+    this.level = this.getLevel();
   };
 
   // returns lines that have been filled
