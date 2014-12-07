@@ -15,8 +15,25 @@ util.colors = {
 };
 
 var w = window;
-util.requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
+w.performance = w.performance || {};
+w.performance.now = (function() {
+    return performance.now     ||
+         performance.mozNow    ||
+         performance.msNow     ||
+         performance.oNow      ||
+         performance.webkitNow ||
+         function() { return new Date().getTime(); };
+}());
+
+util.requestAnimationFrame = w.requestAnimationFrame      ||
+                            w.webkitRequestAnimationFrame ||
+                            w.msRequestAnimationFrame     ||
+                            w.mozRequestAnimationFrame;
+
+util.timestamp = function() {
+    return w.performance.now();
+};
 
 util.printBoard = function(arr) {
     var str = '';
