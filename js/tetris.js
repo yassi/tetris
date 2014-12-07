@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var util = require('./util.js');
 var board = require('./board.js');
@@ -25,10 +25,10 @@ var Tetris = function(fps) {
 
 
   this.init = function() {
-    this.canvas = document.createElement("canvas");
+    this.canvas = document.createElement('canvas');
     this.canvas.width = 700;
     this.canvas.height = 800;
-    this.ctx = this.canvas.getContext("2d");
+    this.ctx = this.canvas.getContext('2d');
     document.body.appendChild(this.canvas);
     document.onkeydown = this.controller.bind(this);
   };
@@ -51,7 +51,7 @@ var Tetris = function(fps) {
   };
 
   this.startGameLoop = function() {
-    if (typeof this.runId == "undefined") {
+    if (typeof this.runId == 'undefined') {
       this.running = true;
       this.startFrameTime = util.timestamp();
       this.prevFrameTime = this.startFrameTime;
