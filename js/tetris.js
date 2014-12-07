@@ -23,7 +23,6 @@ var Tetris = function(fps, canvas) {
   this.stepAccumulator = 0;
   this.step = 1000;
 
-
   this.init = function() {
     this.canvas.width = 700;
     this.canvas.height = 800;
@@ -110,9 +109,10 @@ var Tetris = function(fps, canvas) {
       }
     }
 
-    if (this.stepAccumulator >= this.step) {
+    var step = 50 * (11 - this.gameBoard.level);
+    if (this.stepAccumulator >= step) {
       this.gameBoard.fallBlock();
-      this.stepAccumulator -= this.step;
+      this.stepAccumulator -= step;
     }
 
     var loss = this.gameBoard.detectLoss();
