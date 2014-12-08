@@ -6,7 +6,7 @@ var board = require('./board.js');
 var Tetris = function(fps, canvas) {
   this.fps = fps || 60;
   this.running = false;
-  this.runId;
+  this.runId = null;
   this.gameBoard = new board(20, 16);
   this.gameBoard.init();
   this.blockInPlay = false;
@@ -15,11 +15,11 @@ var Tetris = function(fps, canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.block_size = 28; // in pixels
-  this.block_gutter = 1 // space between blocks
+  this.block_gutter = 1; // space between blocks
 
   // Measured in ms
-  this.startFrameTime;
-  this.lastFrameTime;
+  this.startFrameTime = null;
+  this.lastFrameTime = null;
   this.stepAccumulator = 0;
   this.step = 1000;
 
@@ -38,10 +38,10 @@ var Tetris = function(fps, canvas) {
     var k = e.keyCode;
 
     if (keys.indexOf(k) === -1) {
-      return
+      return;
     } else {
       e.preventDefault();
-      this.actions.push(k)
+      this.actions.push(k);
     }
     return false;
   };
@@ -86,7 +86,7 @@ var Tetris = function(fps, canvas) {
 
     var action;
     if (!this.gameBoard.inPlay) {
-      this.gameBoard.getNewBlock()
+      this.gameBoard.getNewBlock();
     }
 
     while (this.actions.length > 0) {
@@ -148,8 +148,8 @@ var Tetris = function(fps, canvas) {
 
   this.drawThreshold = function(ctx) {
     var thresh = this.gameBoard.deathRow;
-    x_pos = 0;
-    y_pos = (thresh + 1) * 31.5;
+    var x_pos = 0;
+    var y_pos = (thresh + 1) * 31.5;
     ctx.fillStyle = 'black';
     ctx.beginPath();
     ctx.moveTo(x_pos, y_pos);

@@ -18,11 +18,11 @@ var w = window;
 
 w.performance = w.performance || {};
 w.performance.now = (function() {
-  return performance.now ||
-    performance.mozNow ||
-    performance.msNow ||
-    performance.oNow ||
-    performance.webkitNow ||
+  return w.performance.now ||
+    w.performance.mozNow ||
+    w.performance.msNow ||
+    w.performance.oNow ||
+    w.performance.webkitNow ||
     function() {
       return new Date().getTime();
     };
@@ -73,7 +73,7 @@ util.arrayShuffle = function(arr) {
     j = Math.floor(Math.random() * i);
     // Swap
     temp = arr[j];
-    arr[j] = arr[i]
+    arr[j] = arr[i];
     arr[i] = temp;
   }
   return arr;
