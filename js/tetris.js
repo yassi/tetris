@@ -126,10 +126,21 @@ var Tetris = function(fps, canvas) {
     this.drawLanded(ctx);
     this.drawFallingBlock(ctx);
     this.drawLinesCleared(ctx);
+    this.drawLevel(ctx);
     // this.drawThreshold(ctx);
   };
 
+  this.drawLevel = function(ctx) {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(550, 50, 200, 50);
+    ctx.fillStyle = 'black';
+    ctx.font="30px Verdana";
+    ctx.fillText('Level: ' + this.gameBoard.level, 550, 85);
+  };
+
   this.drawLinesCleared = function(ctx) {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(550, 25, 200, 50);
     ctx.fillStyle = 'black';
     ctx.font="30px Verdana";
     ctx.fillText('Lines: ' + this.gameBoard.linesCleared, 550, 50);
