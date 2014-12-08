@@ -1,11 +1,29 @@
+'use strict';
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    jshint: {
+      dev: {
+        src: ['Gruntfile.js', 'js/*.js'],
+        options: {
+          globalstrict: true,
+          globals: {
+            console: true,
+            module: true,
+            require: true,
+            document: true,
+            window: true
+          }
+        }
+      }
+    },
+
     watch: {
       dev:{
-        files: ['js/*.js'],
+        files: ['js/*.js', 'Gruntfile.js'],
         tasks: ['default'],
       }
     },
@@ -41,5 +59,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['browserify']);
+  grunt.registerTask('default', ['jshint', 'browserify']);
 };
