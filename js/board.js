@@ -31,7 +31,7 @@ var Board = function(rows, columns) {
   this.getLevel = function() {
     var level = 1;
     if (this.linesCleared >= 1 && this.linesCleared <= 90) {
-        level = 1 + ((this.linesCleared - 1) / 10);
+        level = Math.floor(1 + ((this.linesCleared - 1) / 10));
     } else if (this.linesCleared >= 91) {
         level = 10;
     }
