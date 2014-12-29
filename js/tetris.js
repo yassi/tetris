@@ -29,7 +29,7 @@ var Tetris = function(fps, canvas) {
   };
 
   this.startGameLoop = function() {
-    if (typeof this.runId == 'undefined') {
+    if (this.runId === null) {
       this.running = true;
       this.startFrameTime = util.timestamp();
       this.prevFrameTime = this.startFrameTime;
@@ -39,7 +39,7 @@ var Tetris = function(fps, canvas) {
 
   this.stop = function() {
     this.runId = window.cancelAnimationFrame(this.runId);
-    this.runId = undefined;
+    this.runId = null;
     this.running = false;
   };
 
