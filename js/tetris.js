@@ -2,6 +2,7 @@
 
 var util = require('./util.js');
 var board = require('./board.js');
+var input = require('./input.js');
 
 var Tetris = function(fps, canvas) {
   this.fps = fps || 60;
@@ -10,7 +11,6 @@ var Tetris = function(fps, canvas) {
   this.gameBoard = new board(20, 16);
   this.gameBoard.init();
   this.blockInPlay = false;
-  this.actions = [];
 
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
@@ -26,24 +26,6 @@ var Tetris = function(fps, canvas) {
   this.init = function() {
     this.canvas.width = 700;
     this.canvas.height = 800;
-    document.onkeydown = this.controller.bind(this);
-  };
-
-  this.controller = function(e) {
-    var UP = 38,
-      DOWN = 40,
-      LEFT = 37,
-      RIGHT = 39;
-    var keys = [UP, DOWN, LEFT, RIGHT];
-    var k = e.keyCode;
-
-    if (keys.indexOf(k) === -1) {
-      return;
-    } else {
-      e.preventDefault();
-      this.actions.push(k);
-    }
-    return false;
   };
 
   this.startGameLoop = function() {
@@ -89,19 +71,19 @@ var Tetris = function(fps, canvas) {
       this.gameBoard.getNewBlock();
     }
 
-    while (this.actions.length > 0) {
-      action = this.actions.pop();
+    while (input.actions.length > 0) {
+      action = input.actions.pop();
       switch (action) {
-        case 37:
+        case 'left':
           this.gameBoard.moveLeft();
           break;
-        case 39:
+        case 'right':
           this.gameBoard.moveRight();
           break;
-        case 40:
+        case 'down':
           this.gameBoard.moveDown();
           break;
-        case 38:
+        case 'up':
           this.gameBoard.rotate();
           break;
         default:
