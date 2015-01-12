@@ -48,6 +48,12 @@ module.exports = function(grunt) {
           require: ['./js/tetris.js'],
           debug: true
         }
+      },
+      specs: {
+        src: ["js/test/*.spec.js"],
+        dest: "js/test/build/spec.js",
+      }
+    },
       }
     }
 
