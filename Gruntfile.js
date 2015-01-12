@@ -18,12 +18,29 @@ module.exports = function(grunt) {
             window: true
           }
         }
+      },
+      spec: {
+        src: 'js/test/*.spec.js',
+        options: {
+          globalstrict: true,
+          globals: {
+            describe: true,
+            expect: true,
+            it: true,
+            beforeEach: true,
+            console: true,
+            module: true,
+            require: true,
+            document: true,
+            window: true
+          }
+        }
       }
     },
 
     watch: {
       dev:{
-        files: ['js/*.js', 'Gruntfile.js'],
+        files: ['js/*.js', 'js/test/*.spec.js', 'Gruntfile.js'],
         tasks: ['default'],
       }
     },
