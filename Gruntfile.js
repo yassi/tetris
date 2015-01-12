@@ -54,6 +54,12 @@ module.exports = function(grunt) {
         dest: "js/test/build/spec.js",
       }
     },
+
+    jasmine: {
+      dev: {
+        options: {
+          specs: './js/test/build/spec.js',
+        }
       }
     }
 
