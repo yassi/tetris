@@ -2,7 +2,7 @@
 
 var Tetromino = function() {
   this.color = 2; // green;
-  this.states = [];
+  this.states = [[1]];
   this.curState = this.states[0];
 
   //pos of top left block in this shape
