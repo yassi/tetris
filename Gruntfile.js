@@ -24,6 +24,7 @@ module.exports = function(grunt) {
         options: {
           globalstrict: true,
           globals: {
+            jasmine: true,
             describe: true,
             expect: true,
             it: true,
@@ -58,12 +59,12 @@ module.exports = function(grunt) {
 
     browserify: {
       dev: {
-        entry: './js/tetris.js',
+        entry: 'js/tetris.js',
         files: {'./js/build/tetris.js': ['js/*.js']},
         options: {
-          alias: ["./js/tetris.js:Tetris"],
-          require: ['./js/tetris.js'],
-          debug: true
+          browserifyOptions: {
+            debug: true
+          }
         }
       },
       specs: {
@@ -88,6 +89,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['jshint', 'browserify', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'browserify', 'jasmine', 'uglify']);
   grunt.registerTask('compile', ['default']);
 };

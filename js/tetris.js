@@ -174,4 +174,5 @@ var Tetris = function(fps, canvas) {
 
 }; // End of tetris function
 
+window.Tetris = Tetris;
 module.exports.Tetris = Tetris;

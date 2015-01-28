@@ -9,7 +9,6 @@
         <script>
 document.addEventListener('DOMContentLoaded',function(){
     var canvasElement = document.getElementById('game-canvas');
-    window.Tetris = require('Tetris').Tetris;
     window.game = new window.Tetris(10, canvasElement);
     game.init();
     game.startGameLoop();
