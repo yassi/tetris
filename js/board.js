@@ -38,13 +38,9 @@ var Board = function(rows, columns) {
 
   this.getNewBlock = function() {
     this.block = queue.next();
-    // pos it in the middle of the game board
-    this.block.pos = {
-      row: 0,
-      col: 4
-    };
     this.inPlay = true;
   };
+
   this.moveLeft = function() {
     var collision = this.detectCollision(this.block.pos.col - 1, this.block.pos.row, this.block.curState);
     if (!collision) {

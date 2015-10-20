@@ -4,10 +4,7 @@ var Tetromino = function() {
   this.curState = this.states[0];
 
   //pos of top left block in this shape
-  this.pos = {
-    row: 0,
-    col: 4
-  };
+  this.pos = {row: 0, col: 4};
 };
 
 Tetromino.prototype = {
@@ -55,6 +52,7 @@ Tetromino.prototype = {
 };
 
 var LBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 2;
   this.states = [
     [
@@ -81,6 +79,7 @@ var LBlock = function() {
 LBlock.prototype = Tetromino.prototype;
 
 var OBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 3;
   this.states = [
     [
@@ -93,6 +92,7 @@ var OBlock = function() {
 OBlock.prototype = Tetromino.prototype;
 
 var JBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 4;
   this.states = [
     [
@@ -119,6 +119,7 @@ var JBlock = function() {
 JBlock.prototype = Tetromino.prototype;
 
 var TBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 5;
   this.states = [
     [
@@ -145,6 +146,7 @@ var TBlock = function() {
 TBlock.prototype = Tetromino.prototype;
 
 var IBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 6;
   this.states = [
     [
@@ -162,6 +164,7 @@ var IBlock = function() {
 IBlock.prototype = Tetromino.prototype;
 
 var SBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 7;
   this.states = [
     [
@@ -179,6 +182,7 @@ var SBlock = function() {
 SBlock.prototype = Tetromino.prototype;
 
 var ZBlock = function() {
+  this.pos = {row: 0, col: 4};
   this.color = 8;
   this.states = [
     [
