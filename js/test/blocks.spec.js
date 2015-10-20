@@ -1,5 +1,3 @@
-'use strict';
-
 var blocks = require("../blocks.js");
 
 describe("block", function(){

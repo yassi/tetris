@@ -1,5 +1,3 @@
-'use strict';
-
 var Tetromino = function() {
   this.color = 2; // green;
   this.states = [[1]];

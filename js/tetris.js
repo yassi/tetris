@@ -1,5 +1,3 @@
-'use strict';
-
 var util = require('./util.js');
 var board = require('./board.js');
 var input = require('./input.js');

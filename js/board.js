@@ -1,5 +1,3 @@
-'use strict';
-
 var util = require('./util.js');
 var queue = require('./blockQueue.js');
 

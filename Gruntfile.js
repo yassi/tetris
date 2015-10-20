@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -9,7 +7,7 @@ module.exports = function(grunt) {
       dev: {
         src: ['Gruntfile.js', 'js/*.js'],
         options: {
-          globalstrict: true,
+          globalstrict: false,
           globals: {
             console: true,
             module: true,
@@ -22,7 +20,7 @@ module.exports = function(grunt) {
       spec: {
         src: 'js/test/*.spec.js',
         options: {
-          globalstrict: true,
+          globalstrict: false,
           globals: {
             jasmine: true,
             describe: true,

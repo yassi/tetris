@@ -1,5 +1,3 @@
-'use strict';
-
 var inputController = {};
 
 inputController.actions = [];

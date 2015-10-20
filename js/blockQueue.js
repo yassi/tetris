@@ -1,5 +1,3 @@
-'use strict';
-
 var util = require('./util.js');
 var blocks = require('./blocks.js');
 
